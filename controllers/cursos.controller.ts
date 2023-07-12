@@ -1,8 +1,16 @@
-const listaDeCursos = require("../models/cursos.json");
-const fs = require("fs");
+import { Request, Response } from "express";
+import listaDeCursos from '../models/cursos.json'
+import fs from "fs";
+
+interface Curso{
+  titulo:string
+  professor:string
+  descricao:string
+}
 
 const CursoController = {
-  cadastrarCurso(req, res) {
+  cadastrarCurso(req:Request, res:Response) {
+    listaDeCursos as Curso []
     const { titulo, descricao, professor } = req.body;
 
     if (!titulo || !descricao || !professor) {
@@ -23,4 +31,4 @@ const CursoController = {
   },
 };
 
-module.exports = CursoController;
+export default CursoController;
